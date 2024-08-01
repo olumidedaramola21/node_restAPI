@@ -1,4 +1,5 @@
 const express = require('express')
+// Router Level middleware
 const router = express.Router()
 
 // Middleware function that logs the request method and url

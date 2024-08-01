@@ -36,3 +36,15 @@ This route path will match butterfly and dragonfly, but not butterflyman, dragon
 app.get(/.*fly$/, (req, res) => {
   res.send('/.*fly$/')
 })
+
+- Controllers
+    . Explore various response methods.
+    . Implement error handling middleware to catch and process errors gracefully
+    . Describe common use case for middleware such as validation and authetication
+
+- Differnce between middldeware and Controllers
+definition: Middleware functions are functions that have access to the request and response objects(req, res) and the next middldeware function in the application request-response cycle
+Purpose: They can perfoam various tasks such as modifying the request and response objects , logging and authetication, parsing request bodies, handling errors.
+
+definition: Controllers are the functions or methods that handle the business logic for specific routes. They are invoked at the end of the middldeware stack.
+Purpose: Controllers process the incoming request data, interact with database, perform the required operations and send reponse back to the client. Controllers are usually the final pieces of middleware in the request-response cycle for a specific route.
