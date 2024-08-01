@@ -24,11 +24,32 @@ router.get('/about', (req, res) => {
   res.send(`About Page! Request received at: ${req.requestTime}`)
 })
 
+// Ending the request-response cycle
+router.use((req, res) => {
+  // works and ens the cycle
+  res.send('Hello');
+  console.log('Hello')
+  // This will no run
+  res.send('Hello')
+
+})
+
 // Error-handling middleware
 router.use((err, req, res) => {
   console.log(err.stack);
   // res.status(500).send('Something broke!')
   // res.send('Something wrong!')
 })
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router

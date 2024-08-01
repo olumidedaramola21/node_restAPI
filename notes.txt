@@ -48,3 +48,21 @@ Purpose: They can perfoam various tasks such as modifying the request and respon
 
 definition: Controllers are the functions or methods that handle the business logic for specific routes. They are invoked at the end of the middldeware stack.
 Purpose: Controllers process the incoming request data, interact with database, perform the required operations and send reponse back to the client. Controllers are usually the final pieces of middleware in the request-response cycle for a specific route.
+
+
+- Middleware Functions:
+  . modifying the request or response objects (Some packages for example will do this, like adding a new property in the request object, or setting the res.locals that is used in the templates with res.render)
+  . Exectuing additional code (Validation middleware functions to validate the request before going to your main logic, authetication middleware functions and so on.)
+  . Calling the next middleware function in the chain.
+  . Ending the request-response cycle (meaning no further middleware functions are called, even if there are more in the chain) -- write out the code...
+  . Application-level middleware
+      Application-level middleware are bound to an instance of Express using app.use or app.<method> (eg. app.get, app.post)
+  . Built-in middldeware
+      Built-in middldeware include
+        . Body parsers(e.g. express.json, express.urlencoded) - These allow us to correctly parse the incoming request body, so that you can use it through req.body
+        . Servering static files: app.use(express.static)
+        . setting up views
+  . Router-level middldeware:
+      works similarly to application-level middlewares but is bound to an instance of Express Router useing router.use of router.method
+- Error handling
+  error handling refers to how express catches and processes errors that ocurs both synchronosly and asynchronously.
