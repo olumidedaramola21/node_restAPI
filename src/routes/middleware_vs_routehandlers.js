@@ -1,5 +1,5 @@
 const express = require('express')
-const route = express.Router()
+const router = express.Router()
 
 // Middleware for authentication
 const autheticate = ((req, res, next) => {
@@ -11,4 +11,16 @@ const autheticate = ((req, res, next) => {
 })
 
 // Middleware for logging
+const logRoute = (req, res, next) {
+  console.log(`Request to ${req.url}`)
+  next()
+}
 
+// Apply middleware to specifc route
+router.get('/secure-data', autheticate, logRoute, (req, res) => {
+  res.json({data: 'This is a secure data'})
+})
+
+router.get('/public-data', logRoute, (req, res) => {
+  res.json({data: 'This is a secure data'})
+})
