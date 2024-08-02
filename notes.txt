@@ -66,3 +66,17 @@ Purpose: Controllers process the incoming request data, interact with database, 
       works similarly to application-level middlewares but is bound to an instance of Express Router useing router.use of router.method
 - Error handling
   error handling refers to how express catches and processes errors that ocurs both synchronosly and asynchronously.
+  A Error handling middleware function and a request middldeware function, so they way express distinguishes this middleware function is through adding four parameters not a single one missing. A route middleware function with less than 4 pararmeter will always be considered as a request middleware function instead of this error middleware function even if it was placed last.
+  
+  Route handling middleware
+  app.use((req, res, next) => {
+  throw new Error("OH NO!");
+  // or next(new Error("OH NO!"));
+});
+Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err);
+  // You will see an OH NO! in the page, with a status code of 500 that can be seen in the network tab of the dev tools
+  res.status(500).send(err.message);
+});
+

@@ -34,12 +34,7 @@ router.use((req, res) => {
 
 })
 
-// Error-handling middleware
-router.use((err, req, res) => {
-  console.log(err.stack);
-  // res.status(500).send('Something broke!')
-  // res.send('Something wrong!')
-})
+
 
 
 
