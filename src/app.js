@@ -1,8 +1,12 @@
 const express = require("express");
 const userRouter = require("./routes/userRoutes");
-const middleware = require("./routes/middleware/middleware");
-
+const pageRouter = require("./routes/pageRoutes")
+const path = require('node:path')
 const app = express();
+
+// View Engine
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs');
 
 // Application level middleware, will always execute on every incoming requests
 
@@ -16,6 +20,7 @@ app.use("/", (req, res, next) => {
 
 // base mount path is `|users` and will always execute on that specific mount path 
 app.use('/users', userRouter)
+app.use('/page', pageRouter)
 
 // Error-handling middleware
 app.use((err, req, res, next) => {
